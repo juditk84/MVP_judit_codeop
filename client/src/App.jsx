@@ -1,24 +1,21 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Route, Routes, Link } from "react-router-dom";
+import './App.css';
+import Chords from "/pages/Chords.jsx";
+import MainMenu from "/pages/MainMenu.jsx";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
-
 
   return (
-    <>
-      
-       <div className="main_window">
-          <h3>App test area</h3>
-          <img className="main_image" src="./src/assets/B.png" alt="" />
-
-       </div>
-       <div className="buttonsArea">
-          <button>Major</button>
-          <button>Minor</button>
-       </div>
-    </>
+    <div className="main_window">
+        <Routes>
+          <Route path="/Chords" element={<Chords/>}/>
+          <Route path="/" element={<MainMenu/>}/>
+        </Routes>
+       
+    </div>
   )
 }
 

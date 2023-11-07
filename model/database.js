@@ -11,7 +11,7 @@ const con = mysql.createConnection({
   host: DB_HOST || "127.0.0.1",
   user: DB_USER || "root",
   password: DB_PASS,
-  database: DB_NAME || "mvpjudit", //to be modified quan sàpiga què posar-hi
+  database: DB_NAME || "mvpjudit",
   multipleStatements: true
 });
 

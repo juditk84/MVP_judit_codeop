@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.send({ title: 'welcome to the API (Abnormal Protruding Intestine)' });
 });
 
-router.get('/api/exercicis', function(req, res, next) {
+router.get('/exercicis', function(req, res, next) {
   db("SELECT * FROM exercicis;")
     .then(results => {
       res.send(results.data);
@@ -16,7 +16,7 @@ router.get('/api/exercicis', function(req, res, next) {
     .catch(err => res.status(500).send(err));
 });
 
-router.get('/api/exercicis/:id', function(req, res, next) {
+router.get('/exercicis/:id', function(req, res, next) {
 
   const result = db(`SELECT * FROM exercicis WHERE id = ${req.params.id};`)
     .then(results => {
