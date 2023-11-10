@@ -9,73 +9,77 @@ h3{
 }
 
 .main_window{
+  padding: 10% 10% 10% 10%;
   background-color: pink;
   border-radius: 3px;
   box-shadow: 30px -16px rgb(55, 33, 54);
-  padding: 5% 5% 5% 5%;
 }
 
 .buttonsArea{
   text-align: center;
 }
 
-.pentagram{
-  /* position: relative; */
-}
-
 .pentagram_image{
   max-width: 100%;
   max-height: 100%;
-  /* opacity: 0; */
+  border: solid;
+  border-radius: 10px;;
 }
 
-.do3{
-  position: absolute;
+.progressbar_container{
+  border: solid;
+  border-radius: 5px;
+  background-color: red;
+}
 
-  top: 350px;
-  right: 500px;
-  width: 5%;
-  height: 5%; 
+.progress_bar{
+  text-align: center;
+  background: linear-gradient(90deg, rgba(4,79,0,1) 0%, rgba(23,121,9,1) 35%, rgba(0,255,126,1) 100%);
+
+  height: 100%;
 }
-.re3{
+
+.button-13 {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",sans-serif;
+  font-size: 13px;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
   position: relative;
-  top: -200px;
-  font-size: relative ;
-   width: 10%;
-  height: 10%; 
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 100px;
+} */
+ 
+.button-13:hover {
+  background-color: #f7fafa;
 }
-.mi3{
-  position: relative;
-  top: -200px;
-  font-size: relative ;
-   width: 10%;
-  height: 10%; 
+
+.button-13:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
 }
-.fa3{
-  position: relative;
-  top: -200px;
-  font-size: relative ;
-   width: 10%;
-  height: 10%; 
+
+.button-13:disabled {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
+  opacity: 35%;
 }
-.sol3{
-  position: relative;
-  top: -200px;
-  font-size: relative ;
-   width: 10%;
-  height: 10%; 
-}
-.la3{
-  position: relative;
-  top: -200px;
-  font-size: relative ;
-   width: 10%;
-  height: 10%; 
-}
-.si3{
-  position: relative;
-  top: -200px;
-  font-size: relative ;
-   width: 10%;
-  height: 10%; 
-}
+
+.hidden{
+  visibility:hidden;
+  display: none;
+} 
