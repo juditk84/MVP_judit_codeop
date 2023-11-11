@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Route, Routes, Link } from "react-router-dom";
 import './App.css';
+import Exercises from "/pages/Exercises.jsx";
+import Theory from "/pages/Theory.jsx";
 import Chords from "/pages/Chords.jsx";
 import Results from "/pages/Results.jsx";
 import MainMenu from "/pages/MainMenu.jsx";
@@ -17,15 +19,24 @@ function App() {
   return (
     <div>
         <Routes>
-          <Route path="/Chords" element={<Chords/>}/>
-          <Route path="/Results" element={<Results/>}/>
-          <Route path="/ChordsTheory" element={<ChordsTheory/>}>
-            <Route path="/ChordsTheory/ChordsSlide_1" element={<ChordsSlide_1/>}/>
-            <Route path="/ChordsTheory/ChordsSlide_2" element={<ChordsSlide_2/>}/>
-            <Route path="/ChordsTheory/ChordsSlide_3" element={<ChordsSlide_3/>}/>
-            <Route path="/ChordsTheory/ChordsSlide_4" element={<ChordsSlide_4/>}/>
-          </Route>
-          <Route path="/" element={<MainMenu/>}/>
+        <Route path="/" element={<MainMenu/>}/>
+        <Route path="/Exercises" element={<Exercises/>}/>
+        <Route path="/Theory" element={<Theory/>}>
+
+          <Route path="/Theory/ChordsSlide_1" element={<ChordsSlide_1/>}/>
+          <Route path="/Theory/ChordsSlide_2" element={<ChordsSlide_2/>}/>
+          <Route path="/Theory/ChordsSlide_3" element={<ChordsSlide_3/>}/>
+          <Route path="/Theory/ChordsSlide_4" element={<ChordsSlide_4/>}/>
+        
+        </Route>
+        <Route path="/Chords" element={<Chords/>}/>
+        <Route path="/Results" element={<Results/>}/>
+        <Route path="/ChordsTheory" element={<ChordsTheory/>}>
+          {/* <Route path="/ChordsTheory/ChordsSlide_1" element={<ChordsSlide_1/>}/>
+          <Route path="/ChordsTheory/ChordsSlide_2" element={<ChordsSlide_2/>}/>
+          <Route path="/ChordsTheory/ChordsSlide_3" element={<ChordsSlide_3/>}/>
+          <Route path="/ChordsTheory/ChordsSlide_4" element={<ChordsSlide_4/>}/> */}
+        </Route>
         </Routes>
        
     </div>

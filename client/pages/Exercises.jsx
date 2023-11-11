@@ -1,8 +1,8 @@
 import React from 'react'
-import { useState, useEffect, useLocation } from 'react';
+import { useState, useEffect } from 'react';
 
 
-export default function Chords() {
+export default function Exercises() {
 
     const [exercicis, setExercicis] = useState([])
     const [exerciciCounter, setExerciciCounter] = useState(0);
@@ -10,10 +10,9 @@ export default function Chords() {
     const [errors, setErrors] = useState(0);
     const [progressBarFill, setProgressBarFill] = useState(100)
     const [wrongOrRightPopup, setWrongOrRightPopup] = useState(null)
-    const [filteredChordsQuery, setFilteredChordsQuery] = useState(new URLSearchParams(location.search).get('filteredChords'));
+    const [filteredExercisesQuery, setFilteredChordsQuery] = useState(new URLSearchParams(location.search).get('filteredExercises'));
 
     const [audio, setAudio] = useState(new Audio());
-
 
     useEffect(() => {
         getExercicis();
@@ -23,17 +22,15 @@ export default function Chords() {
 
     try{
 
-      console.log(filteredChordsQuery)
+      console.log(filteredExercisesQuery)
 
-      // setFilteredChordsQuery(filteredChordsQuery.split(",").map(chord => `'${chord}'`).join(","))
-
-      const response = await fetch(`http://localhost:4000/acords/filtrats/${filteredChordsQuery}`)  
+      const response = await fetch(`http://localhost:4000/acords/filtrats/${filteredExercisesQuery}`)  
       const data = await response.json();
 
       console.log(data)
-      console.log(filteredChordsQuery)
+      console.log(filteredExercisesQuery)
     
-      console.log("acords filtrats: ", data)
+      console.log("exercicis filtrats: ", data)
       setExercicis(data);
 
     }catch(err){console.log("an error :-)")}
@@ -126,13 +123,13 @@ export default function Chords() {
           <div className={wrongOrRightPopup ? "hidden" : "buttonsArea"}>
 
             <h5>What kind of chord is it?</h5>
-          <button className="button-13" onClick={() => handleSelectionButton("major")} disabled={filteredChordsQuery.includes("major") ? false : true}>Major</button>
-          <button className="button-13" onClick={() => handleSelectionButton("minor")} disabled={filteredChordsQuery.includes("minor") ? false : true}>Minor</button>
-          <button className="button-13" onClick={() => handleSelectionButton("dim")} disabled={filteredChordsQuery.includes("dim") ? false : true}>Diminished</button>
-          <button className="button-13" onClick={() => handleSelectionButton("Maj7")} disabled={filteredChordsQuery.includes("Maj7") ? false : true}>Maj7</button>
-          <button className="button-13" onClick={() => handleSelectionButton("m7")} disabled={filteredChordsQuery.includes("m7") ? false : true}>m7</button>
-          <button className="button-13" onClick={() => handleSelectionButton("7th")} disabled={filteredChordsQuery.includes("7th") ? false : true}>7th</button>
-          <button className="button-13" onClick={() => handleSelectionButton("m7b5")} disabled={filteredChordsQuery.includes("m7b5") ? false : true}>m7b5</button>
+          <button className="button-13" onClick={() => handleSelectionButton("major")} disabled={filteredExercisesQuery.includes("major") ? false : true}>Major</button>
+          <button className="button-13" onClick={() => handleSelectionButton("minor")} disabled={filteredExercisesQuery.includes("minor") ? false : true}>Minor</button>
+          <button className="button-13" onClick={() => handleSelectionButton("dim")} disabled={filteredExercisesQuery.includes("dim") ? false : true}>Diminished</button>
+          <button className="button-13" onClick={() => handleSelectionButton("Maj7")} disabled={filteredExercisesQuery.includes("Maj7") ? false : true}>Maj7</button>
+          <button className="button-13" onClick={() => handleSelectionButton("m7")} disabled={filteredExercisesQuery.includes("m7") ? false : true}>m7</button>
+          <button className="button-13" onClick={() => handleSelectionButton("7th")} disabled={filteredExercisesQuery.includes("7th") ? false : true}>7th</button>
+          <button className="button-13" onClick={() => handleSelectionButton("m7b5")} disabled={filteredExercisesQuery.includes("m7b5") ? false : true}>m7b5</button>
           
           </div>
           <div style={{"textAlign": "center"}}><video autoPlay muted style={{"width": "50%", "height": "50%"}} src={wrongOrRightPopup ? `../public/assets/videos/${wrongOrRightPopup}.mp4` : ""}></video></div>

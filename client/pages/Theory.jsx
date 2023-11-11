@@ -1,41 +1,45 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import './ChordsTheory.css'
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import './Theory.css'
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 
-export default function ChordsTheory() {
+export default function Theory() {
 
     const navigate = useNavigate();
+    const location = useLocation(); //trying ways to pass state between pages
+    
+    const [activityGroup, setActivityGroup] = useState(location.state) //storing what I sent from MainMenu via useNavigate state
     const [slideIndex, setSlideIndex] = useState(1)
-    const [filteredChords, setFilteredChords] = useState({})
+    const [filteredExercises, setFilteredExercises] = useState({})
 
     function onSliderButtonClick(e){ 
         
         setSlideIndex(e.target.id === "previous" ? slideIndex - 1 : slideIndex + 1)
-        console.log(slideIndex)
-
+        console.log(location)
     }
 
     function handleFormSubmit(event){
-      
       event.preventDefault();
 
-      let chordSetterArray = [];
+      let exerciseSetterArray = [];
       for(let i = 6; i >= 0; i--){
         if(event.target[i].checked){
-          chordSetterArray.push(event.target[i].id)
+          exerciseSetterArray.push(event.target[i].id)
         }
       }
 
-      setFilteredChords({filteredChordsArray: chordSetterArray.join(",")})
+      setFilteredExercises({filteredExercisesArray: exerciseSetterArray})
       
-      navigate({pathname: "/Chords", search: `?filteredChords=${chordSetterArray}`})
+      console.log(exerciseSetterArray)
+      setFilteredExercises(exerciseSetterArray)
+      console.log(filteredExercises.array = exerciseSetterArray)
+      navigate({pathname: "/Exercises", search: `?filteredExercises=${exerciseSetterArray}`})
     }
 
   return (
     <div className="main_window">
         
-        <h3>CHORDS FANSI ZÍORI</h3>
+        <h3>{activityGroup.toUpperCase()} THEORY PAGE</h3>
         
         <div>
         
@@ -44,9 +48,9 @@ export default function ChordsTheory() {
         </div>
             <div className="theory_slider">
 
-            <Link to={`ChordsSlide_${slideIndex - 1}`}><button id="previous" onClick={onSliderButtonClick} disabled={slideIndex === 1 ? true : false}>
+            <Link to={`${activityGroup}Slide_${slideIndex - 1}`}><button id="previous" onClick={onSliderButtonClick} disabled={slideIndex === 1 ? true : false}>
             prev.</button>
-            </Link>{slideIndex}/4<Link to={`ChordsSlide_${slideIndex + 1}`}>
+            </Link>{slideIndex}/4<Link to={`${activityGroup}Slide_${slideIndex + 1}`}>
             <button onClick={onSliderButtonClick} disabled={slideIndex === 4 ? true : false}>next</button></Link> <br />
           
             </div>
