@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './MainMenu.css';
+import "98.css";
 
 export default function MainMenu() {
 
@@ -19,16 +20,23 @@ export default function MainMenu() {
   }, [activityGroup])
 
   return (
-    <div className="menu_container">
-        <div className="title_box"><h3>Main Menu</h3></div>
-        
-          <div className="row" ></div>
-            
-            <button id="Chords" activitygroup={activityGroup} onClick={handleOnClick} className="button-74">Chords</button><br />
-            <button id="Intervals" activitygroup={activityGroup} onClick={handleOnClick} className="button-74">Intervals</button><br />
-            <button id="Scales" activitygroup={activityGroup} onClick={handleOnClick} className="button-74">Scales</button><br />
 
-        <p>it's a trap for now, they all take to the same crappy app jsjsjsj</p>
+    <div className="window" style={{width: "300px"}}>
+      <div className="title-bar">
+        <marquee className="title-bar-text">Judit's vintage music theory site ^^</marquee>
+        <div className="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div className="window-body">
+        <p>What do you want to learn today?</p>
+      </div>
+
+        <button id="Chords" activitygroup={activityGroup} onClick={handleOnClick} >Chords</button>
+        <button id="Intervals" activitygroup={activityGroup} onClick={handleOnClick} >Intervals</button>
+        <button id="Scales" activitygroup={activityGroup} onClick={handleOnClick} >Scales</button>
 
     </div>
 

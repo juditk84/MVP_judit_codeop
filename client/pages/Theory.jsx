@@ -9,13 +9,13 @@ export default function Theory() {
     const location = useLocation(); //trying ways to pass state between pages
     
     const [activityGroup, setActivityGroup] = useState(location.state) //storing what I sent from MainMenu via useNavigate state
-    const [slideIndex, setSlideIndex] = useState(1)
+    const [slideIndex, setSlideIndex] = useState(1) //to move from slide to slide
     const [filteredExercises, setFilteredExercises] = useState({})
 
     function onSliderButtonClick(e){ 
         
         setSlideIndex(e.target.id === "previous" ? slideIndex - 1 : slideIndex + 1)
-        console.log(location)
+
     }
 
     function handleFormSubmit(event){
@@ -32,8 +32,7 @@ export default function Theory() {
       
       console.log(exerciseSetterArray)
       setFilteredExercises(exerciseSetterArray)
-      console.log(filteredExercises.array = exerciseSetterArray)
-      navigate({pathname: "/Exercises", search: `?filteredExercises=${exerciseSetterArray}`})
+      navigate({pathname: "/Exercises", search: `?filteredExercises=${exerciseSetterArray}&activityGroup=${activityGroup}`})
     }
 
   return (
@@ -58,7 +57,7 @@ export default function Theory() {
         <br /><br />
         <h3>FILTERS:</h3>
         <form className="mb-2 row" onSubmit={() => handleFormSubmit(event)}>
-            
+        
             <div className="col-sm"><input id="major" type="checkbox" /><label htmlFor="">Major</label></div>
             <div className="col-sm"><input id="minor" type="checkbox" /><label htmlFor="">Minor</label></div>
             <div className="col-sm"><input id="dim" type="checkbox" /><label htmlFor="">Dim</label></div>

@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Exercises() {
+
+    const navigate = useNavigate();
 
     const [exercicis, setExercicis] = useState([])
     const [exerciciCounter, setExerciciCounter] = useState(0);
@@ -10,11 +12,13 @@ export default function Exercises() {
     const [errors, setErrors] = useState(0);
     const [progressBarFill, setProgressBarFill] = useState(100)
     const [wrongOrRightPopup, setWrongOrRightPopup] = useState(null)
-    const [filteredExercisesQuery, setFilteredChordsQuery] = useState(new URLSearchParams(location.search).get('filteredExercises'));
+    const [filteredExercisesQuery] = useState(new URLSearchParams(location.search).get('filteredExercises'))
+    const [activityGroupQuery] = useState(new URLSearchParams(location.search).get('activityGroup'))                                                               
 
     const [audio, setAudio] = useState(new Audio());
 
     useEffect(() => {
+      console.log(location.search)
         getExercicis();
     }, [])
 
@@ -22,18 +26,14 @@ export default function Exercises() {
 
     try{
 
-      console.log(filteredExercisesQuery)
-
-      const response = await fetch(`http://localhost:4000/acords/filtrats/${filteredExercisesQuery}`)  
+      const response = await fetch(`http://localhost:4000/exercicis/filtrats/${activityGroupQuery}/${filteredExercisesQuery}`)  
       const data = await response.json();
-
-      console.log(data)
-      console.log(filteredExercisesQuery)
     
       console.log("exercicis filtrats: ", data)
       setExercicis(data);
 
     }catch(err){console.log("an error :-)")}
+    
   }
 
   function handleSelectionButton(str) { // the whole thing can be refactored
@@ -108,7 +108,7 @@ export default function Exercises() {
     <div className= "main_window">
       {exerciciCounter < 9 ?
         <div >
-        <h3>THE CHORDS APP ITSELF</h3>
+        <marquee><h3>THE CHORDS APP ITSELF</h3></marquee>
           
           <button className={wrongOrRightPopup ? "hidden" : "button-13"} onClick={playSound}>Listen!</button> <br /> <br />
           <div className="progressbar_container">

@@ -1,6 +1,7 @@
 body{
   padding: 10% 10% 10% 10%;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
+  background-image: url("./public/assets/images/windows-95-desktop.jpeg");
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
