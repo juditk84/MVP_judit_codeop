@@ -81,7 +81,7 @@ export default function Exercises() {
   // ojo amb això que és una absoluta meravella: 
   // canviem l'audio de l'exercici que es mostra en pantalla QUAN CANVIA exerciciCounter o/i exericis
   useEffect(() => {
-    setAudio(new Audio(`../public/assets/sounds/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.mp3`))
+    exerciciCounter < 5 && setAudio(new Audio(`../public/assets/sounds/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.mp3`))
   }, [exerciciCounter, exercicis])
 
   function handleTryAgain(){
@@ -112,19 +112,19 @@ export default function Exercises() {
             </div>
           </div>
           
-          <ul class="tree-view">
-            <li></li>
-            <li>Here's your results:</li>
-            <li>
+          <ul className="tree-view">
+            <li key="1"></li>
+            <li key="2">Here's your results:</li>
+            <li key="3">
               
               <ul>
                 {exercicis.map(({fonamental, especie, completat}, i) => 
-                  <li >
+                  <li key={i}>
                     {completat ? "Right!" : "Wrong..."}
                   <details open>
                   <summary>Details</summary>
                     <ul>
-                      <li>Chord {i + 1}: {fonamental?.toUpperCase()} {especie}</li>
+                      <li key={i}>Chord {i + 1}: {fonamental?.toUpperCase()} {especie}</li>
                     </ul>
                   </details >
                   </li>)}

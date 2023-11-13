@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import './App.css';
 import Exercises from "/pages/Exercises.jsx";
 import Theory from "/pages/Theory.jsx";
-import Results from "/pages/Results.jsx";
 import MainMenu from "/pages/MainMenu.jsx";
 import ChordsSlide_1 from '/pages/Theory/ChordsSlide_1.jsx';
 import ChordsSlide_2 from '/pages/Theory/ChordsSlide_2.jsx';
@@ -44,7 +43,6 @@ function App() {
         
         </Route>
 
-        <Route path="/Results" element={<Results/>}/>
         </Routes>
        
     </div>

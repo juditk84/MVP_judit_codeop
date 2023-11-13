@@ -24,6 +24,7 @@ h3{
   padding-left: 10%;
   padding-right: 10%;
   text-align: center;
+  image-rendering: pixelated;  /* making it look crappy on purpose is LA AUTÉNTICA SALUD */
 }
 
 .pentagram_image{
@@ -42,62 +43,36 @@ h3{
 }
 
 .progressbar_container{
-
   border: solid 1px;
   background-color: red;
   /* max-width: 80%; */
-  
 }
 
 .progress_bar{
-  
   background: linear-gradient(90deg, rgba(4,79,0,1) 0%, rgba(23,121,9,1) 35%, rgba(0,255,126,1) 100%);
   height: 100%;
   text-align: center;
-  
-}
-
-.button-13 {
-  background-color: #fff;
-  border: 1px solid #d5d9d9;
-  border-radius: 8px;
-  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-  box-sizing: border-box;
-  color: #0f1111;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Amazon Ember",sans-serif;
-  font-size: 13px;
-  line-height: 29px;
-  padding: 0 10px 0 11px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  width: 100px;
-} */
- 
-.button-13:hover {
-  background-color: #f7fafa;
-}
-
-.button-13:focus {
-  border-color: #008296;
-  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-  outline: 0;
-}
-
-.button-13:disabled {
-  border-color: #008296;
-  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-  outline: 0;
-  opacity: 35%;
 }
 
 .hidden{
   visibility:hidden;
   display: none;
 } 
+
+.theory_slider{
+  padding-left: 25%;
+  padding-right: 25%;
+  text-align: center;
+}
+
+.theory_slider{
+  padding-left: 25%;
+  padding-right: 25%;
+  text-align: center;
+}
+
+.start_button{
+  padding-left: 25%;
+  padding-right: 25%;
+  text-align: center;
+}

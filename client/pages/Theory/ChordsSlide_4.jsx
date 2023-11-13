@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function ChordsSlide_1() {
   return (
-    <div>Fourth slide of the chords tutorial</div>
+    <div className="pp-3 mb-2 bg-light text-dark rounded border border-dark">Fourth slide of the chords tutorial</div>
   )
 }

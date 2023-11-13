@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import './Theory.css'
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 
 export default function Theory() {
@@ -8,7 +7,7 @@ export default function Theory() {
     const navigate = useNavigate();
     const location = useLocation(); //trying ways to pass state between pages
     
-    const [activityGroup] = useState(location.state.activityGroup) //storing what I sent from MainMenu via useNavigate state
+    const [activityGroup] = useState(location.state) //storing what I sent from MainMenu via useNavigate state
     const [numOfChoices, setNumOfChoices] = useState();
     const [slideIndex, setSlideIndex] = useState(1); //to move from slide to slide
     const [filteredExercises, setFilteredExercises] = useState({});
@@ -16,7 +15,7 @@ export default function Theory() {
     useEffect(() => {
       
       activityGroup === "Intervals" ? setNumOfChoices(14) : setNumOfChoices(7)
-
+      console.log(activityGroup)
     }, [])
 
 
