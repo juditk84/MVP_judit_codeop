@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import './App.css';
 import Exercises from "/pages/Exercises.jsx";
 import Theory from "/pages/Theory.jsx";
@@ -17,7 +17,7 @@ import ScalesSlide_1 from '/pages/Theory/ScalesSlide_1.jsx';
 import ScalesSlide_2 from '/pages/Theory/ScalesSlide_2.jsx';
 import ScalesSlide_3 from '/pages/Theory/ScalesSlide_3.jsx';
 import ScalesSlide_4 from '/pages/Theory/ScalesSlide_4.jsx';
-
+import Slide from '/pages/Slide.jsx'
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
         <Route path="/Exercises" element={<Exercises/>}/>
         <Route path="/Theory" element={<Theory/>}>
 
-          <Route path="/Theory/ChordsSlide_1" element={<ChordsSlide_1/>}/>
+          {/* <Route path="/Theory/ChordsSlide_1" element={<ChordsSlide_1/>}/>
           <Route path="/Theory/ChordsSlide_2" element={<ChordsSlide_2/>}/>
           <Route path="/Theory/ChordsSlide_3" element={<ChordsSlide_3/>}/>
           <Route path="/Theory/ChordsSlide_4" element={<ChordsSlide_4/>}/>
@@ -39,9 +39,9 @@ function App() {
           <Route path="/Theory/ScalesSlide_1" element={<ScalesSlide_1/>}/>
           <Route path="/Theory/ScalesSlide_2" element={<ScalesSlide_2/>}/>
           <Route path="/Theory/ScalesSlide_3" element={<ScalesSlide_3/>}/>
-          <Route path="/Theory/ScalesSlide_4" element={<ScalesSlide_4/>}/>
-{/* 
-          <Route path="/Theory/:type/:slide_id" element={<ScalesSlide_4/>}/> */}
+          <Route path="/Theory/ScalesSlide_4" element={<ScalesSlide_4/>}/> */}
+
+          <Route path={`/Theory/:exerciseGroup/:slideIndex`} element={<Slide/>}/>
         
         </Route>
 

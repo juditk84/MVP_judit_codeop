@@ -4,6 +4,7 @@
 
 SET foreign_key_checks = 0;
 DROP TABLE if exists exercicis;
+DROP TABLE if exists slides;
 SET foreign_key_checks = 1;
 
 --
@@ -17,6 +18,14 @@ CREATE TABLE exercicis(
     especie VARCHAR(40) not null,
     fonamental VARCHAR(1) not null,
     completat BOOLEAN not null,
+    PRIMARY KEY (id)
+    );
+
+CREATE TABLE slides(
+    id INT NOT NULL AUTO_INCREMENT,
+    activityGroup VARCHAR(50),
+    content VARCHAR(2000),
+    pageNumber INTEGER,
     PRIMARY KEY (id)
     );
 
@@ -117,3 +126,10 @@ INSERT INTO exercicis (tipus, subtipus, especie, fonamental, completat) VALUES (
 INSERT INTO exercicis (tipus, subtipus, especie, fonamental, completat) VALUES ("Scales", "major", "mixolydian", "e", false);
 INSERT INTO exercicis (tipus, subtipus, especie, fonamental, completat) VALUES ("Scales", "minor", "aeolian", "e", false);
 INSERT INTO exercicis (tipus, subtipus, especie, fonamental, completat) VALUES ("Scales", "dim", "locrian", "e", false);
+
+
+
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This is some content", 1);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This is some more content", 2);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This is some more more content", 3);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This is some more more more content", 4);

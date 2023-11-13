@@ -81,7 +81,7 @@ export default function Exercises() {
   // ojo amb això que és una absoluta meravella: 
   // canviem l'audio de l'exercici que es mostra en pantalla QUAN CANVIA exerciciCounter o/i exericis
   useEffect(() => {
-    exerciciCounter < 5 && setAudio(new Audio(`../public/assets/sounds/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.mp3`))
+    exercicis.length > 0 && (exerciciCounter < 5 && setAudio(new Audio(`../public/assets/sounds/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.mp3`)))
   }, [exerciciCounter, exercicis])
 
   function handleTryAgain(){
@@ -162,11 +162,15 @@ export default function Exercises() {
             <div className="progress_bar" style={{ 'width': `${progressBarFill}%` }}>{`${encerts}/5`}</div>
           </div> <br />
           
+          {exercicis.length > 0 &&
+          
           <div className= "pentagram">
             
             <img className="pentagram_image" src={`../public/assets/images/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.png`}></img> 
             {`../public/assets/images/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.png`}
           </div>
+          
+          }
 
           <div className={wrongOrRightPopup ? "hidden" : "buttonsArea"}>
 

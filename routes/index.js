@@ -32,4 +32,13 @@ router.get('/exercicis/filtrats/:tipus/:especie', function(req, res, next) { // 
        .catch(err => res.status(500).send(err));
 });
 
+router.get('/slides/:activityGroup/:pageNumber', function(req, res) {
+
+  db(`SELECT * FROM slides WHERE activityGroup = '${req.params.activityGroup}' AND pageNumber = '${req.params.pageNumber}'`)
+  .then(results => {
+    res.send(results.data);
+  })
+  .catch(err => res.status(500).send(err))
+})
+
 module.exports = router;

@@ -75,9 +75,9 @@ export default function Theory() {
 
           <div className="theory_slider">
 
-            <Link to={`${activityGroup}Slide_${slideIndex - 1}`}><button id="previous" onClick={onSliderButtonClick} disabled={slideIndex === 1 ? true : false}>
+            <Link to={`./${activityGroup}/${slideIndex - 1}`}><button id="previous" onClick={onSliderButtonClick} disabled={slideIndex === 1 ? true : false}>
             prev.</button>
-            </Link>{slideIndex}/4<Link to={`${activityGroup}Slide_${slideIndex + 1}`}>
+            </Link>{slideIndex}/4<Link to={`./${activityGroup}/${slideIndex + 1}`}>
             <button onClick={onSliderButtonClick} disabled={slideIndex === 4 ? true : false}>next</button></Link> <br />
           
             </div>
