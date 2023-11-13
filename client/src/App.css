@@ -20,24 +20,41 @@ h3{
   text-align: center;
 }
 
+.pentagram{
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: center;
+}
+
 .pentagram_image{
-  max-width: 100%;
-  max-height: 100%;
-  border: solid;
-  border-radius: 10px;;
+  max-width: 80%;
+  max-height: 80%;
+  border: solid 1px;
+  border-radius: 5px;;
+}
+
+.slides_window{
+  padding-left: 10%;
+  padding-right: 10%;
+  max-width: 80%;
+  max-height: 80%;
+  margin: auto;
 }
 
 .progressbar_container{
-  border: solid;
-  border-radius: 5px;
+
+  border: solid 1px;
   background-color: red;
+  /* max-width: 80%; */
+  
 }
 
 .progress_bar{
-  text-align: center;
+  
   background: linear-gradient(90deg, rgba(4,79,0,1) 0%, rgba(23,121,9,1) 35%, rgba(0,255,126,1) 100%);
-
   height: 100%;
+  text-align: center;
+  
 }
 
 .button-13 {

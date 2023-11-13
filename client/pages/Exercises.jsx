@@ -18,7 +18,6 @@ export default function Exercises() {
     const [audio, setAudio] = useState(new Audio());
 
     useEffect(() => {
-      console.log(location.search)
         getExercicis();
     }, [])
 
@@ -67,7 +66,7 @@ export default function Exercises() {
       setTimeout(() => {
         
         setExerciciCounter(exerciciCounter + 1);
-        setProgressBarFill(progressBarFill - 10);
+        setProgressBarFill(progressBarFill - 20);
         setWrongOrRightPopup(null)
 
       }, 1500) // es mostra el missatge 1.5 segons y luego al lío
@@ -82,22 +81,62 @@ export default function Exercises() {
   // ojo amb això que és una absoluta meravella: 
   // canviem l'audio de l'exercici que es mostra en pantalla QUAN CANVIA exerciciCounter o/i exericis
   useEffect(() => {
-    setAudio(new Audio(`../public/assets/sounds/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.mp3`))
+    setAudio(new Audio(`../public/assets/sounds/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.mp3`))
   }, [exerciciCounter, exercicis])
 
+  function handleTryAgain(){
+    setEncerts(0)
+    setErrors(0)
+    setProgressBarFill(100)
+    setExerciciCounter(0)
+    getExercicis();
+  }
+
+  function handleMainMenuNav(){
+    navigate({pathname: "../"})
+  }
 
   function ResultsComponent(){ //ho estic fent així per no haver de passar casi tot com a props
     
       return (
-        <div className="">
-          <p>{errors > encerts ? "nice try!" : "Good work!"}</p>
-          <p>Here are your results:</p>
-          <div className="">
-            {exercicis.map(({fonamental, especie, completat}, i) => 
-            <div className=" mb-4">
-              <div className="card card-body">
-                <h4>{completat ? "Right!" : "Wrong..."}</h4> Chord {i + 1}: {fonamental?.toUpperCase()} {especie}</div></div>)}
+
+        
+        <div className="window">
+
+          <div className="title-bar">
+            <marquee className="title-bar-text">{errors > encerts ? "🥴🥴🥴 nice try! 🥴🥴🥴" : "🥳🥳🥳 Good work! 🥳🥳🥳"}</marquee>
+            <div className="title-bar-controls">
+              <button aria-label="Minimize"></button>
+              <button aria-label="Maximize"></button>
+              <button aria-label="Close"></button>
+            </div>
           </div>
+          
+          <ul class="tree-view">
+            <li></li>
+            <li>Here's your results:</li>
+            <li>
+              
+              <ul>
+                {exercicis.map(({fonamental, especie, completat}, i) => 
+                  <li >
+                    {completat ? "Right!" : "Wrong..."}
+                  <details open>
+                  <summary>Details</summary>
+                    <ul>
+                      <li>Chord {i + 1}: {fonamental?.toUpperCase()} {especie}</li>
+                    </ul>
+                  </details >
+                  </li>)}
+              </ul>
+            
+            </li>
+          </ul>
+
+        <br /><br />
+        <button onClick={handleTryAgain}>Try Again</button> <button onClick={handleMainMenuNav}>Main Menu</button>
+        <br /><br />
+
         </div>
       )
     
@@ -105,33 +144,82 @@ export default function Exercises() {
 
   return (
 
-    <div className= "main_window">
-      {exerciciCounter < 9 ?
+    <div className= "window">
+      {exerciciCounter < 5 ?
         <div >
-        <marquee><h3>THE CHORDS APP ITSELF</h3></marquee>
+
+          <div className="title-bar">
+            <marquee className="title-bar-text">{activityGroupQuery} exercises</marquee>
+            <div className="title-bar-controls">
+              <button aria-label="Minimize"></button>
+              <button aria-label="Maximize"></button>
+              <button aria-label="Close"></button>
+          </div>
+          </div>
           
-          <button className={wrongOrRightPopup ? "hidden" : "button-13"} onClick={playSound}>Listen!</button> <br /> <br />
+          <br /><button className={wrongOrRightPopup ? "hidden" : ""} onClick={playSound}>Listen!</button> {audio.src} <br /> <br />
           <div className="progressbar_container">
-            <div className="progress_bar" style={{ 'width': `${progressBarFill}%` }}>{`${encerts}/10`}</div>
+            <div className="progress_bar" style={{ 'width': `${progressBarFill}%` }}>{`${encerts}/5`}</div>
           </div> <br />
           
           <div className= "pentagram">
             
-            <img className="pentagram_image" src={`../public/assets/images/chords/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.png`}></img> 
-
+            <img className="pentagram_image" src={`../public/assets/images/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.png`}></img> 
+            {`../public/assets/images/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.png`}
           </div>
+
           <div className={wrongOrRightPopup ? "hidden" : "buttonsArea"}>
 
-            <h5>What kind of chord is it?</h5>
-          <button className="button-13" onClick={() => handleSelectionButton("major")} disabled={filteredExercisesQuery.includes("major") ? false : true}>Major</button>
-          <button className="button-13" onClick={() => handleSelectionButton("minor")} disabled={filteredExercisesQuery.includes("minor") ? false : true}>Minor</button>
-          <button className="button-13" onClick={() => handleSelectionButton("dim")} disabled={filteredExercisesQuery.includes("dim") ? false : true}>Diminished</button>
-          <button className="button-13" onClick={() => handleSelectionButton("Maj7")} disabled={filteredExercisesQuery.includes("Maj7") ? false : true}>Maj7</button>
-          <button className="button-13" onClick={() => handleSelectionButton("m7")} disabled={filteredExercisesQuery.includes("m7") ? false : true}>m7</button>
-          <button className="button-13" onClick={() => handleSelectionButton("7th")} disabled={filteredExercisesQuery.includes("7th") ? false : true}>7th</button>
-          <button className="button-13" onClick={() => handleSelectionButton("m7b5")} disabled={filteredExercisesQuery.includes("m7b5") ? false : true}>m7b5</button>
+            <div className={activityGroupQuery === "Chords" ? "buttonsArea" : "hidden"}>
+
+              <br /><p>What kind of chord is it?</p>
+            <button className="" onClick={() => handleSelectionButton("major")} disabled={filteredExercisesQuery.includes("major") ? false : true}>Major</button>
+            <button className="" onClick={() => handleSelectionButton("minor")} disabled={filteredExercisesQuery.includes("minor") ? false : true}>Minor</button>
+            <button className="" onClick={() => handleSelectionButton("dim")} disabled={filteredExercisesQuery.includes("dim") ? false : true}>Diminished</button>
+            <button className="" onClick={() => handleSelectionButton("Maj7")} disabled={filteredExercisesQuery.includes("Maj7") ? false : true}>Maj7</button>
+            <button className="" onClick={() => handleSelectionButton("m7")} disabled={filteredExercisesQuery.includes("m7") ? false : true}>m7</button>
+            <button className="" onClick={() => handleSelectionButton("7th")} disabled={filteredExercisesQuery.includes("7th") ? false : true}>7th</button>
+            <button className="" onClick={() => handleSelectionButton("m7b5")} disabled={filteredExercisesQuery.includes("m7b5") ? false : true}>m7b5</button>
+            
+            </div>
+
+            <div className={activityGroupQuery === "Intervals" ? "buttonsArea" : "hidden"}>
+
+             <br /><p>What kind of interval is it?</p>
+            <button className="" onClick={() => handleSelectionButton("maj2")} disabled={filteredExercisesQuery.includes("maj2") ? false : true}>Major 2nd</button>
+            <button className="" onClick={() => handleSelectionButton("min2")} disabled={filteredExercisesQuery.includes("min2") ? false : true}>Minor 2nd</button>
+            <button className="" onClick={() => handleSelectionButton("maj3")} disabled={filteredExercisesQuery.includes("maj3") ? false : true}>Major 3rd</button>
+            <button className="" onClick={() => handleSelectionButton("min3")} disabled={filteredExercisesQuery.includes("min3") ? false : true}>Minor 3rd</button>
+            <button className="" onClick={() => handleSelectionButton("dim4")} disabled={filteredExercisesQuery.includes("dim4") ? false : true}>diminished 4th</button>
+            <button className="" onClick={() => handleSelectionButton("perf4")} disabled={filteredExercisesQuery.includes("perf4") ? false : true}>perfect 4th</button>
+            <button className="" onClick={() => handleSelectionButton("aug4")} disabled={filteredExercisesQuery.includes("aug4") ? false : true}>Augmented 4th</button>
+            <br />
+            <button className="" onClick={() => handleSelectionButton("perf5")} disabled={filteredExercisesQuery.includes("perf5") ? false : true}>Perfect 5th</button>
+            <button className="" onClick={() => handleSelectionButton("aug5")} disabled={filteredExercisesQuery.includes("aug5") ? false : true}>Augmented 5th</button>
+            <button className="" onClick={() => handleSelectionButton("maj6")} disabled={filteredExercisesQuery.includes("maj6") ? false : true}>Major 6th</button>
+            <button className="" onClick={() => handleSelectionButton("min6")} disabled={filteredExercisesQuery.includes("min6") ? false : true}>Minor 6th</button>
+            <button className="" onClick={() => handleSelectionButton("maj7")} disabled={filteredExercisesQuery.includes("maj7") ? false : true}>Major 7th</button>
+            <button className="" onClick={() => handleSelectionButton("min7")} disabled={filteredExercisesQuery.includes("min7") ? false : true}>Minor 7th</button>
+            <button className="" onClick={() => handleSelectionButton("octave")} disabled={filteredExercisesQuery.includes("octave") ? false : true}>Octave</button>
           
+            </div>
+
+            <div className={activityGroupQuery === "Scales" ? "buttonsArea" : "hidden"}>
+
+              <br /><p>What kind of scale is it?</p>
+            <button className="" onClick={() => handleSelectionButton("ionian")} disabled={filteredExercisesQuery.includes("ionian") ? false : true}>Ionian</button>
+            <button className="" onClick={() => handleSelectionButton("dorian")} disabled={filteredExercisesQuery.includes("dorian") ? false : true}>Dorian</button>
+            <button className="" onClick={() => handleSelectionButton("phrygian")} disabled={filteredExercisesQuery.includes("phrygian") ? false : true}>Phrygian</button>
+            <button className="" onClick={() => handleSelectionButton("lydian")} disabled={filteredExercisesQuery.includes("lydian") ? false : true}>Lydian</button>
+            <button className="" onClick={() => handleSelectionButton("mixolydian")} disabled={filteredExercisesQuery.includes("mixolydian") ? false : true}>Mixolydian</button>
+            <button className="" onClick={() => handleSelectionButton("aeolian")} disabled={filteredExercisesQuery.includes("aeolian") ? false : true}>Aeolian</button>
+            <button className="" onClick={() => handleSelectionButton("locrian")} disabled={filteredExercisesQuery.includes("locrian") ? false : true}>Locrian</button>
+            
+            </div>
+
           </div>
+          
+
           <div style={{"textAlign": "center"}}><video autoPlay muted style={{"width": "50%", "height": "50%"}} src={wrongOrRightPopup ? `../public/assets/videos/${wrongOrRightPopup}.mp4` : ""}></video></div>
         </div>
         : <ResultsComponent/>}

@@ -7,6 +7,8 @@ import "98.css";
 export default function MainMenu() {
 
   const [activityGroup, setActivityGroup] = useState("");
+  const [numOfChoices, setNumOfChoices] = useState(0);
+  
   const navigate = useNavigate();
   
 
@@ -16,14 +18,16 @@ export default function MainMenu() {
   }
 
   useEffect(() => { // no estic gens segura d'haver-ho fet bé, tinc molts problemes per gestionar la sincro de useState
-    activityGroup && navigate(`/Theory/${activityGroup}Slide_1`, {state: activityGroup}); //he llegit sobre state en el useNavigate i envio l'estat així to try things
+    
+    console.log(activityGroup)
+    activityGroup && navigate(`/Theory/${activityGroup}Slide_1`, {state: {activityGroup: activityGroup}}); //he llegit sobre state en el useNavigate i envio l'estat així to try things
   }, [activityGroup])
 
   return (
 
     <div className="window" style={{width: "300px"}}>
       <div className="title-bar">
-        <marquee className="title-bar-text">Judit's vintage music theory site ^^</marquee>
+        <marquee className="title-bar-text">Judit's MODERN AND UP TO DATE music theory site ^^</marquee>
         <div className="title-bar-controls">
           <button aria-label="Minimize"></button>
           <button aria-label="Maximize"></button>
@@ -31,12 +35,14 @@ export default function MainMenu() {
         </div>
       </div>
       <div className="window-body">
+        <marquee direction="right" scrollamount="12">🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶</marquee>
         <p>What do you want to learn today?</p>
+        <marquee scrollamount="6">🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶🎵🎶</marquee>
       </div>
 
-        <button id="Chords" activitygroup={activityGroup} onClick={handleOnClick} >Chords</button>
-        <button id="Intervals" activitygroup={activityGroup} onClick={handleOnClick} >Intervals</button>
-        <button id="Scales" activitygroup={activityGroup} onClick={handleOnClick} >Scales</button>
+        <button id="Chords"onClick={handleOnClick} >Chords</button>
+        <button id="Intervals" onClick={handleOnClick} >Intervals</button>
+        <button id="Scales" onClick={handleOnClick} >Scales</button>
 
     </div>
 
