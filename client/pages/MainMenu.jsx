@@ -15,7 +15,7 @@ export default function MainMenu() {
   }
 
   useEffect(() => { // no estic gens segura d'haver-ho fet bé, tinc molts problemes per gestionar la sincro de useState
-    activityGroup && navigate({pathname: `/Theory/${activityGroup}/1`}); //he llegit sobre state en el useNavigate i envio l'estat així to try things
+    activityGroup && navigate({pathname: `/Theory/${activityGroup}/1`, search:`?activityGroup=${activityGroup}`}); //he llegit sobre state en el useNavigate i envio l'estat així to try things
   }, [activityGroup])
 
   return (

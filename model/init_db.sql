@@ -133,3 +133,11 @@ INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This 
 INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This is some more content", 2);
 INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This is some more more content", 3);
 INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Chords", "This is some more more more content", 4);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Intervals", "This is some content", 1);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Intervals", "This is some more content", 2);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Intervals", "This is some more more content", 3);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Intervals", "This is some more more more content", 4);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Scales", "This is some content", 1);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Scales", "This is some more content", 2);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Scales", "This is some more more content", 3);
+INSERT INTO slides (activityGroup, content, pageNumber) VALUES ("Scales", "This is some more more more content", 4);
