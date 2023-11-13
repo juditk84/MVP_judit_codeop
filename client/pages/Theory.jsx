@@ -7,7 +7,7 @@ export default function Theory() {
     const navigate = useNavigate();
     const location = useLocation(); //trying ways to pass state between pages
     
-    const [activityGroup] = useState(location.state) //storing what I sent from MainMenu via useNavigate state
+    const [activityGroup, setActivityGroup] = useState() //storing what I sent from MainMenu via useNavigate state
     const [numOfChoices, setNumOfChoices] = useState();
     const [slideIndex, setSlideIndex] = useState(1); //to move from slide to slide
     const [filteredExercises, setFilteredExercises] = useState({});
@@ -15,9 +15,25 @@ export default function Theory() {
     useEffect(() => {
       
       activityGroup === "Intervals" ? setNumOfChoices(14) : setNumOfChoices(7)
-      console.log(activityGroup)
+      initiateActivityGroup()
     }, [])
 
+    function initiateActivityGroup(){
+      
+      if (location.pathname.includes("Chords")){
+        setActivityGroup("Chords")
+        console.log("the route includes CHORDS")
+      }
+      else if (location.pathname.includes("Intervals")){
+        setActivityGroup("Intervals")
+        console.log("the route includes INTERVALS")
+      }
+      else{
+        setActivityGroup("Scales")
+        console.log("the route includes SCALES")
+      }
+
+    }
 
     function onSliderButtonClick(e){ 
         
@@ -47,7 +63,7 @@ export default function Theory() {
     <div className="window" >
         
         <div className="title-bar">
-        <marquee className="title-bar-text">{activityGroup.toUpperCase()} THEORY PAGE</marquee>
+        <marquee className="title-bar-text">{activityGroup?.toUpperCase()} THEORY PAGE</marquee>
         <div className="title-bar-controls">
           <button aria-label="Minimize"></button>
           <button aria-label="Maximize"></button>

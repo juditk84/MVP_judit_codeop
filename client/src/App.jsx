@@ -40,6 +40,8 @@ function App() {
           <Route path="/Theory/ScalesSlide_2" element={<ScalesSlide_2/>}/>
           <Route path="/Theory/ScalesSlide_3" element={<ScalesSlide_3/>}/>
           <Route path="/Theory/ScalesSlide_4" element={<ScalesSlide_4/>}/>
+{/* 
+          <Route path="/Theory/:type/:slide_id" element={<ScalesSlide_4/>}/> */}
         
         </Route>
 

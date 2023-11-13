@@ -1,5 +1,17 @@
 import React from 'react'
 
+const db = {
+  chords: {
+    1: {
+      text: "",
+      img: "",
+      filters: 
+      [
+        
+      ]
+    }
+  }
+}
 
 export default function ChordsSlide_1() {
   return (
