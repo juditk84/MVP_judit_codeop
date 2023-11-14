@@ -1,49 +1,34 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 
 export default function Theory() {
 
     const navigate = useNavigate();
-    const location = useLocation(); //trying ways to pass state between pages
     
-    const [activityGroup, setActivityGroup] = useState() //storing what I sent from MainMenu via useNavigate state
     const [numOfChoices, setNumOfChoices] = useState();
-    const {slideIndex} = useParams()
-    const [filteredExercises, setFilteredExercises] = useState({});
+    const {slideIndex, activityGroup} = useParams()
+    const [filteredExercises, setFilteredExercises] = useState(); // couldn't get filteredExercises to sync right, so I'm using the exerciseSetterArray instead, wich I know is not good practice...
 
     useEffect(() => {
       
+      //I set the number of choices because chords and scales have 7 choices, but intervals has 14.
       activityGroup === "Intervals" ? setNumOfChoices(14) : setNumOfChoices(7)
-      initiateActivityGroup()
+
     }, [])
 
-    function initiateActivityGroup(){
-      
-      if (location.pathname.includes("Chords")){
-        setActivityGroup("Chords")
-        console.log("the route includes CHORDS")
-      }
-      else if (location.pathname.includes("Intervals")){
-        setActivityGroup("Intervals")
-        console.log("the route includes INTERVALS")
-      }
-      else{
-        setActivityGroup("Scales")
-        console.log("the route includes SCALES")
-      }
-
-    }
-
     function onSliderButtonClick(e){ 
-        
-      navigate({pathname: `./${activityGroup}/${event.target.id === "previous" ? +slideIndex - 1 : +slideIndex + 1}`})
+      
+      //the handling of the PREV. and NEXT buttons for the slides. if the event.target.id of the button is "previous",
+      //it takes you to the current slide - 1. Otherwise, it takes you to current slide + 1.
+      navigate({pathname: `./${activityGroup}/${e.target.id === "previous" ? +slideIndex - 1 : +slideIndex + 1}`})
 
     }
 
     function handleFormSubmit(event){
       event.preventDefault();
 
+      //here i'm cheating... not using state but a standard js array here.
       let exerciseSetterArray = [];
       for(let i = numOfChoices; i >= 0; i--){
         if(event.target[i].checked){
@@ -51,12 +36,10 @@ export default function Theory() {
         }
       }
 
-      setFilteredExercises({filteredExercisesArray: exerciseSetterArray})
-      
-      console.log(exerciseSetterArray)
-      setFilteredExercises(exerciseSetterArray)
+      setFilteredExercises(exerciseSetterArray) //Judit cheats... hahah
       navigate({pathname: "/Exercises", search: `?filteredExercises=${exerciseSetterArray}&activityGroup=${activityGroup}`})
     }
+
 
   return (
     
@@ -71,8 +54,10 @@ export default function Theory() {
         </div>
       </div>
         
-        <div className="slides_window"><Outlet /></div>
-
+        <div className="slides_window"><Outlet /></div> {/* the slides page shows inside of this. */}
+        
+          {/* clicking on PREV. / NEXT buttons takes you to a different slide, but the prev. button is disabled if you're in slide 1
+              and the next button is disabled if you're on the fourth. */}
           <div className="theory_slider">
             <button id="previous" onClick={onSliderButtonClick} disabled={+slideIndex === 1}>prev.</button>
             {slideIndex}/4
@@ -82,8 +67,18 @@ export default function Theory() {
         <br /><br />
         <p style={{textAlign: "center"}}>FILTERS:</p>
         <form onSubmit={() => handleFormSubmit(event)}>
-        
-        {activityGroup === "Chords" &&
+
+        {/* would love to refactor the following part, but oh my time flies... 
+            Right now it displays a different set of buttons depending on the activityGroup variable that comes from the URL.
+            Not perfect but hey it works...! 
+            
+            So, my logic is that each button has a different ID ilustrating what the exercise that the button toggles.
+            once you selected the exercises you want to do and you click "Start the test", wich is actually a button
+            that submits the form with what checkboxes have been checked passed in the event. 
+            The handleFormDSubmit function reads which ones are toggled and passes them to the /Exercises page in the form
+            of URL search params.*/}
+
+        {activityGroup === "Chords" && 
           <div className="mb-2 row">
             <div className="col-sm"><input id="major" type="checkbox"/><label htmlFor="major">Major</label></div>
             <div className="col-sm"><input id="minor" type="checkbox" /><label htmlFor="minor">Minor</label></div>

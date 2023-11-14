@@ -8,18 +8,9 @@ router.get('/', function(req, res, next) {
   res.send({ title: 'welcome to the API (Abnormal Protruding Intestine)' });
 });
 
-router.get('/exercicis', function(req, res, next) {
-  db("SELECT * FROM acords ORDER BY RAND() LIMIT 10;")
-    .then(results => {
-      res.send(results.data);
-    })
-    .catch(err => res.status(500).send(err));
-});
-
-
 //get 5 random exercises from a filtered selection of chords:
 
-router.get('/exercicis/filtrats/:tipus/:especie', function(req, res, next) { // no recordo què va comentar Germinal sobre la sintaxi /exercicis/FILTRATS
+router.get('/exercicis/filtrats/:tipus/:especie', function(req, res, next) { // This is not good syntax for the GET adress. Germinal told me how to do it but I forgot and forgot to ask again...
 
       // the URL query comes in the shape of a string with each chord/scale/interval separated by a comma,
       // but we want a string with each chord/scale/interval between "" and separated by a comma,
@@ -33,7 +24,7 @@ router.get('/exercicis/filtrats/:tipus/:especie', function(req, res, next) { // 
 });
 
 router.get('/slides/:activityGroup/:pageNumber', function(req, res) {
-
+      // this is for the slides. I have a table with the contents of each slide with strings in markdown format that can be read with the markdown extension.
   db(`SELECT * FROM slides WHERE activityGroup = '${req.params.activityGroup}' AND pageNumber = '${req.params.pageNumber}'`)
   .then(results => {
     res.send(results.data);

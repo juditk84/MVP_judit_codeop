@@ -1,3 +1,6 @@
+// sorry, there's a few catalan words here and there...
+//This is the page that renders the exercises and handles their logic.
+
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,9 +15,12 @@ export default function Exercises() {
     const [errors, setErrors] = useState(0);
     const [progressBarFill, setProgressBarFill] = useState(100)
     const [wrongOrRightPopup, setWrongOrRightPopup] = useState(null)
+
+    // Maybe there's a better way to grab the search params, but this is what some article suggested:
     const [filteredExercisesQuery] = useState(new URLSearchParams(location.search).get('filteredExercises'))
     const [activityGroupQuery] = useState(new URLSearchParams(location.search).get('activityGroup'))                                                               
 
+    // Maybe there's a better way to add audio, but this is what some documentation suggested:
     const [audio, setAudio] = useState(new Audio());
 
     useEffect(() => {
@@ -35,7 +41,20 @@ export default function Exercises() {
     
   }
 
-  function handleSelectionButton(str) { // the whole thing can be refactored
+  function handleSelectionButton(str) { 
+    
+    // the whole thing can be refactored. For now what it does is 
+    // add +1 to "encerts" if the answer is right or a +1 to "errors" if the answer is wrong.
+    
+    // (in the timeout) it reshapes the array of exercicis to include wether the exercise you've done is
+    // answered correctly or not (by default, all exercises come from the backend as "completat = 0, but if you
+    // get it right in turns to 1 and that translates later to being correctly answered.")
+
+    // (also in the timeout) adds one to the "exerciciCounter" to move to the next exercise and displays the "wrongOrRightPopup"
+    // thing that displays a crappy video for 1.5 seconds.
+
+    // it can be nicely refactored, but at this point I'm just seeing code and html marquees when I go to sleep and I close my eyes.
+
     if(exercicis[exerciciCounter]?.especie === str){
       console.log("resposta correcta");
       setEncerts(encerts + 1);
@@ -73,17 +92,18 @@ export default function Exercises() {
     }
   }
 
+  //this just plays the sound when the Listen button is clicked.
   function playSound(){
           audio.loop = false;
           audio.play();
   }
 
-  // ojo amb això que és una absoluta meravella: 
-  // canviem l'audio de l'exercici que es mostra en pantalla QUAN CANVIA exerciciCounter o/i exericis
+  // this bring me joy: the exercise piano sound is changed on the condition that exerciciCounter and/or exercicis have changed.
   useEffect(() => {
     exercicis.length > 0 && (exerciciCounter < 5 && setAudio(new Audio(`../public/assets/sounds/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.mp3`)))
   }, [exerciciCounter, exercicis])
 
+  // this resets the game with the filters you set in the /Theory page.
   function handleTryAgain(){
     setEncerts(0)
     setErrors(0)
@@ -92,11 +112,14 @@ export default function Exercises() {
     getExercicis();
   }
 
+  // this tamkes you back to the Main Menu.
   function handleMainMenuNav(){
     navigate({pathname: "../"})
   }
 
-  function ResultsComponent(){ //ho estic fent així per no haver de passar casi tot com a props
+  //then this... it could be a separate component but for some reason I did it like this and now it's
+  //almost 17h and excuses excuses excuses xD
+  function ResultsComponent(){ 
     
       return (
 
@@ -117,6 +140,12 @@ export default function Exercises() {
             <li key="2">Here's your results:</li>
             <li key="3">
               
+              {/* the app maps through the exercicis thing and returns a list with "Right" or "Wrong" 
+                  depending on the "completat" parameter. 
+                  I would love to give it a better format... instead it shows just
+                  the option you should have answered. Maybe doing it so it also displays in red
+                  the option you entered if it's wrong and green if it's right would be nice. */}
+
               <ul>
                 {exercicis.map(({fonamental, especie, completat}, i) => 
                   <li key={i}>
@@ -144,11 +173,12 @@ export default function Exercises() {
 
   return (
 
-    <div className= "window">
-      {exerciciCounter < 5 ?
+    <div className= "window"> 
+    
+      {exerciciCounter < 5 ? //the app uses 5 exercises. The main window will show instead of the Results component while we're in the 5 exercises
         <div >
 
-          <div className="title-bar">
+          <div className="title-bar"> {/* the win98 title bar thing */}
             <marquee className="title-bar-text">{activityGroupQuery} exercises</marquee>
             <div className="title-bar-controls">
               <button aria-label="Minimize"></button>
@@ -171,6 +201,10 @@ export default function Exercises() {
           </div>
           
           }
+          {/* I really don't like this, but that's what I came up with.
+              Depending on the activityGroup we are in, it will display a set of button or another.
+              Then, each button will be disabled/enabled depending on the checkboxes of the /Theory page
+              that are passed to the Exercises page in the shape of a URL parameter.*/}
 
           <div className={wrongOrRightPopup ? "hidden" : "buttonsArea"}>
 
@@ -226,7 +260,7 @@ export default function Exercises() {
 
           <div style={{"textAlign": "center"}}><video autoPlay muted style={{"width": "50%", "height": "50%"}} src={wrongOrRightPopup ? `../public/assets/videos/${wrongOrRightPopup}.mp4` : ""}></video></div>
         </div>
-        : <ResultsComponent/>}
+        : <ResultsComponent/>} {/* If we finished the exercises, the Results Component is displayed instead of all the rest. */}
       
     </div>
   )
