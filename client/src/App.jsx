@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<MainMenu/>}/>
         <Route path="/Exercises" element={<Exercises/>}/>
         <Route path="/Theory" element={<Theory/>}>
-            <Route path={`/Theory/:exerciseGroup/:slideIndex`} element={<Slide/>}/>      
+            <Route path={`/Theory/:activityGroup/:slideIndex`} element={<Slide/>}/>      
         </Route>
 
         </Routes>

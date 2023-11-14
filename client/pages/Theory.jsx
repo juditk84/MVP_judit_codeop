@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
 
 export default function Theory() {
 
@@ -9,7 +9,7 @@ export default function Theory() {
     
     const [activityGroup, setActivityGroup] = useState() //storing what I sent from MainMenu via useNavigate state
     const [numOfChoices, setNumOfChoices] = useState();
-    const [slideIndex, setSlideIndex] = useState(1); //to move from slide to slide
+    const {slideIndex} = useParams()
     const [filteredExercises, setFilteredExercises] = useState({});
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function Theory() {
 
     function onSliderButtonClick(e){ 
         
-        setSlideIndex(e.target.id === "previous" ? slideIndex - 1 : slideIndex + 1)
+      navigate({pathname: `./${activityGroup}/${event.target.id === "previous" ? +slideIndex - 1 : +slideIndex + 1}`})
 
     }
 
@@ -74,13 +74,10 @@ export default function Theory() {
         <div className="slides_window"><Outlet /></div>
 
           <div className="theory_slider">
-
-            <Link to={`./${activityGroup}/${slideIndex - 1}`}><button id="previous" onClick={onSliderButtonClick} disabled={slideIndex === 1 ? true : false}>
-            prev.</button>
-            </Link>{slideIndex}/4<Link to={`./${activityGroup}/${slideIndex + 1}`}>
-            <button onClick={onSliderButtonClick} disabled={slideIndex === 4 ? true : false}>next</button></Link> <br />
-          
-            </div>
+            <button id="previous" onClick={onSliderButtonClick} disabled={+slideIndex === 1}>prev.</button>
+            {slideIndex}/4
+            <button id="next" onClick={onSliderButtonClick} disabled={+slideIndex === 4}>next</button>
+          </div>
 
         <br /><br />
         <p style={{textAlign: "center"}}>FILTERS:</p>

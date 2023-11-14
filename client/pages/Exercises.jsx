@@ -157,7 +157,7 @@ export default function Exercises() {
           </div>
           </div>
           
-          <br /><button className={wrongOrRightPopup ? "hidden" : ""} onClick={playSound}>Listen!</button> {audio.src} <br /> <br />
+          <br /><button className={wrongOrRightPopup ? "hidden" : ""} onClick={playSound}>Listen!</button><br /> <br />
           <div className="progressbar_container">
             <div className="progress_bar" style={{ 'width': `${progressBarFill}%` }}>{`${encerts}/5`}</div>
           </div> <br />
@@ -167,7 +167,7 @@ export default function Exercises() {
           <div className= "pentagram">
             
             <img className="pentagram_image" src={`../public/assets/images/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.png`}></img> 
-            {`../public/assets/images/${activityGroupQuery}/${exercicis[exerciciCounter]?.fonamental}_${exercicis[exerciciCounter]?.especie}.png`}
+            
           </div>
           
           }
