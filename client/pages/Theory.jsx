@@ -76,7 +76,12 @@ export default function Theory() {
             once you selected the exercises you want to do and you click "Start the test", wich is actually a button
             that submits the form with what checkboxes have been checked passed in the event. 
             The handleFormDSubmit function reads which ones are toggled and passes them to the /Exercises page in the form
-            of URL search params.*/}
+            of URL search params.
+            
+            CAREFUL! I didn't take time to make a lot of assets (sound and staff img) so if you're in the scales or the 
+            intervals section, grabbing only 2 from the filters will give you 4 exercises instead of 5, and the last one
+            will be empty... Note for feature extender: maybe add some default pre-selected values or...
+            ...fix that in whatever way hahahah */}
 
         {activityGroup === "Chords" && 
           <div className="mb-2 row">

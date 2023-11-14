@@ -10,9 +10,9 @@ Database setup:
 After git cloning the repo, you should
 1 .- create a .env file with this:
 
-  DB_HOST=localhost
-  DB_USER= insert yours here
-  DB_NAME=mvpjudit
+  DB_HOST=localhost  
+  DB_USER= insert yours here  
+  DB_NAME=mvpjudit  
   DB_PASS= insert yours here
 
 2 .- Replace the "insert yours here" with your info, 
@@ -41,3 +41,5 @@ The app is a music theory learning little thing structured as follows:
 - Results. You can view your results and decide if you want to try again or go to the main menu.
 
 And that's all! ^^
+
+I wanted to give it a retro look and make you feel like the connection is gonna break when your mother picks up the phone like it's 1998. Hope you like it!
