@@ -7,7 +7,7 @@ export default function Theory() {
     const navigate = useNavigate();
     
     const [numOfChoices, setNumOfChoices] = useState();
-    const {slideIndex, activityGroup} = useParams()
+    const {slideIndex, activityGroup} = useParams() // grabbing the slide index and the activityGroup from the URL yayyyy
     const [filteredExercises, setFilteredExercises] = useState(); // couldn't get filteredExercises to sync right, so I'm using the exerciseSetterArray instead, wich I know is not good practice...
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export default function Theory() {
         }
       }
 
-      setFilteredExercises(exerciseSetterArray) //Judit cheats... hahah
+      setFilteredExercises(exerciseSetterArray) 
       navigate({pathname: "/Exercises", search: `?filteredExercises=${exerciseSetterArray}&activityGroup=${activityGroup}`})
     }
 

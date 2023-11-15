@@ -43,3 +43,13 @@ The app is a music theory learning little thing structured as follows:
 And that's all! ^^
 
 I wanted to give it a retro look and make you feel like the connection is gonna break when your mother picks up the phone like it's 1998. Hope you like it!
+
+## THINGS I WOULD HAVE LOOOOVED TO DO (but oh my no time no time)
+
+- The app relies on A LOT on assets, mostly images (that I had to do one by one grrr) and sounds (that I also did one by one and took a lot of time)... I would have loved to build a system (maybe on CSS) that builds a staff, cleff and notes and moves them according to what exercise you are doing, but only now after the mvp i'm starting to get css, so it's gonna be a future project.
+
+- Some css quirks have to be fixed. I'm still confused with absolute/relative, centering stuff (eventually things center after using the 15.667 ways you can center something), size of windows changing, etc etc etc
+
+- better slides for the theory part. omg I rushed yesterday to write something that made some sense, but i'm sure they are the most confusing thing.
+
+- I would really LOOOOVE to do the styling so you can grab the windows and move them around, and maybe add some desktop icons. Also, the minimize/close buttons in the toolbars are just for decoration now, but if I had more time I would make them usable.

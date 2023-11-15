@@ -31,7 +31,7 @@ export default function Exercises() {
 
     try{
 
-      const response = await fetch(`http://localhost:4000/exercicis/filtrats/${activityGroupQuery}/${filteredExercisesQuery}`)  
+      const response = await fetch(`http://localhost:4000/exercicis/${activityGroupQuery}/${filteredExercisesQuery}`)  
       const data = await response.json();
     
       console.log("exercicis filtrats: ", data)

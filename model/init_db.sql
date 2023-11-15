@@ -32,7 +32,8 @@ CREATE TABLE slides(
     PRIMARY KEY (id)
     );
 
--- wanted to do this with a loop but I don't know how to do it in mysql.
+-- wanted to do this with a loop but I don't know how to do it in mysql. And... these have to be coded somewhere, right?
+-- I did it as flexible as possible to be able to fetch everything nicely, but there have to be that many choices for exercise group.
 
 INSERT INTO exercicis (tipus, subtipus, especie, fonamental, completat) VALUES ("Chords", "triada", "major", "c", false);
 INSERT INTO exercicis (tipus, subtipus, especie, fonamental, completat) VALUES ("Chords", "triada", "minor", "c", false);
